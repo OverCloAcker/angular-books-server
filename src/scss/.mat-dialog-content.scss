@@ -1,0 +1,56 @@
+@use 'theme/colors';
+@use 'theme/typography';
+
+app-add-book-dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+:root {
+    .mat-mdc-dialog-container .mdc-dialog__surface {
+        border-radius: 28px;
+    }
+
+    h1 {
+        padding-bottom: 15px;
+    }
+
+    .mdc-dialog .mdc-dialog__content {
+        padding-bottom: 24px;
+    }
+
+    .mat-mdc-dialog-container .mdc-dialog__surface {
+        background-color: colors.surface();
+    }
+
+    .mat-mdc-dialog-container .mdc-dialog__title {
+        color: colors.on-surface();
+    }
+
+    .mat-mdc-dialog-container .mdc-dialog__title {
+        @include typography.headline-small;
+    }
+
+    .mdc-dialog__content>:first-child {
+        margin-bottom: 5.2px;
+    }
+
+    span.mat-mdc-button-touch-target {
+        height: 40px;
+    }
+
+    .mat-cancel-button {
+        span.mdc-button__ripple {
+            background-color: colors.surface();
+        }
+        span.mdc-button__label {
+            color: colors.primary();
+        }
+    }
+
+    .mdc-dialog__actions {
+        padding: 0;
+        min-height: auto;
+    }
+}

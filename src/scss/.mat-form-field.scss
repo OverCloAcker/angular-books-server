@@ -1,0 +1,103 @@
+@use 'theme/colors';
+@use 'theme/typography';
+
+//Text field Container
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: colors.surface-variant();
+}
+
+//Text field Label text (empty)
+mat-label, .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+    @include typography.body-large;
+    color: colors.on-surface-variant();
+}
+
+//Text field Label text (populated)
+.mdc-floating-label--float-above {
+    mat-label, span {
+        @include typography.body-small;
+        color: colors.primary();
+    }
+}
+
+//Text field Caret
+.mdc-text-field .mdc-text-field__input {
+    caret-color: colors.primary();
+}
+
+//Text field Active Indicator (focused)
+.mdc-text-field--filled .mdc-line-ripple::after {
+    border-bottom-color: colors.primary();
+}
+
+//Text field Input Text
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: colors.on-surface();
+    @include typography.body-large;
+}
+
+//Text field Label text Error
+.mdc-text-field--invalid {
+    mat-label, span {
+        color: colors.error();
+    }
+}
+
+//Text field Active indicator Error
+.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::before, .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::after, .mdc-text-field--invalid:not(.mdc-text-field--disabled):hover .mdc-line-ripple::before {
+    border-bottom-color: colors.error();
+}
+
+//Text field Supporting Text on error
+.mat-mdc-form-field-error {
+    color: colors.error();
+    @include typography.body-small;
+}
+
+// .mat-mdc-button {
+//     // margin-left: auto;
+//     // height: 40px;
+// }
+
+//Button default settings
+.mat-mdc-button.mat-mdc-button-base {
+    margin-left: auto;
+    height: 40px;
+}
+
+//Login button disabled
+.mat-mdc-button[disabled][disabled] {
+    .mdc-button__ripple {
+        background-color: colors.on-surface();
+        opacity: .12;
+    }
+    .mdc-button__label {
+        color: colors.on-surface();
+        opacity: 0.38;
+        @include typography.label-large;
+    }
+}
+
+//Login button enabled
+.mat-mdc-button:not(:disabled) {
+    .mdc-button__ripple {
+        background-color: colors.primary();
+    }
+    .mdc-button__label {
+        color: colors.on-primary();
+        @include typography.label-large;
+    }
+}
+
+//Login button hovered
+.mat-mdc-button:not(:disabled) {
+    &:hover {
+        .mdc-button__ripple {
+            background-color: colors.primary();
+            opacity: 0.08;
+        }
+        .mdc-button__label {
+            color: colors.primary();
+        }
+    }
+}

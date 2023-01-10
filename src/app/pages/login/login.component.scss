@@ -1,0 +1,15 @@
+:host {
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+}

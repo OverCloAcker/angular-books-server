@@ -1,0 +1,109 @@
+@use 'theme/colors';
+@use 'theme/typography';
+
+.mat-sidenav-container {
+  flex-grow: 1;
+  background-color: inherit;
+  color: inherit;
+}
+
+.mat-sidenav {
+  //padding: 32px;
+  // padding: 28px;
+  padding: 12px;
+  width: 360px;
+  // min-width: 80px;
+  @media(max-width: 1239px) {
+    width: 80px;
+  }
+  // border: none;
+  background-color: colors.surface();
+    // background-color: red;
+  color: colors.on-surface-variant();
+}
+
+p {
+  margin: 0;
+}
+
+:root {
+  .mat-mdc-list-base {
+      display: flex;
+      flex-direction: column;
+      @media(max-width: 1239px) {
+        gap: 12px;
+      }
+    }
+  .mdc-list-item.mdc-list-item--with-one-line {
+    height: 56px;
+    padding-left: 16px;
+    padding-right: 24px;
+    @media(max-width: 1239px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    border-radius: 28px;
+    @media(max-width: 1239px) {
+      border-radius: 0;
+      // padding-left: 12px;
+    }
+    &.nav-link-active{
+      // height: 32px;
+      // border-radius: 28px;
+      --symbol-fill: 1;
+    }
+  }
+  .mat-mdc-list-item-unscoped-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    @media(max-width: 1239px) {
+      // flex-direction: column;
+      // gap: 4px;
+      display: grid;
+      grid-template-rows: 32px 1fr;
+      gap: 4px;
+      place-items: center;
+      // border-radius: 10px;
+    }
+    // color: colors.on-surface-variant();
+    color: inherit;
+    @include typography.label-large();
+    .mat-mdc-list-item-interactive::before {
+        background-color: currentColor;
+        // background-color: red;
+      }
+  } 
+  // .mdc-list-item__primary-text {
+
+  .mat-mdc-raised-button:not(:disabled) {
+    background-color: colors.primary();
+    color: colors.on-primary();
+  }
+}
+
+.mat-mdc-list-item-interactive:not(:focus):not(.mdc-list-item--disabled):hover::before {
+  background-color: colors.on-surface();
+  // background-color: red;
+  color: colors.on-surface();
+  opacity: .08;
+}
+
+.nav-link-active {
+  background-color: colors.secondary-container();
+  // background-color: red;
+  @media(max-width: 1239px) {
+    // .mdc-list-item__primary-text {
+    //   border-radius: 10px;
+    // }
+  }
+  color: colors.on-secondary-container();
+  // height: 100px;
+
+  &.mat-mdc-list-item-interactive:not(:focus):not(.mdc-list-item--disabled):hover::before {
+    opacity: .08;
+    background-color: colors.on-secondary-container();
+    color: colors.on-secondary-container();
+  }
+}

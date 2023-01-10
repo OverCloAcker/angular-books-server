@@ -1,0 +1,59 @@
+@use 'theme/colors';
+@use 'theme/typography';
+
+.mat-book-list-item {
+    display: flex;
+    flex-direction: row;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding-inline: 16px 24px;
+    background-color: colors.surface();
+    height: 72px;
+    //width: min-content;
+    // margin-left: 16px;
+    position: relative;
+    isolation: isolate;
+    &:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        opacity: var(--state-layer-opacity, 0);
+        background-color: colors.on-surface();
+        z-index: -1;
+    }
+    &:hover {
+        --state-layer-opacity: .08;
+        // box-shadow: 1px 1px 1px 1px;
+    }
+
+    .mat-book-info {
+        display: flex;
+        flex-direction: column;
+        margin-block: auto;
+        overflow: hidden;
+        max-width: 80ch;
+    }
+
+    .mat-book-name {
+        color: colors.on-surface();
+        @include typography.body-large;
+    }
+
+    .mat-book-author {
+        color: colors.on-surface-variant();
+        @include typography.body-medium();
+    }
+
+    .mat-mdc-icon-button {
+        color: colors.on-surface-variant();
+    }
+
+    .mat-icon-button-wrapper {
+        margin-block: auto;
+    }
+
+    // button.cdk-program-focused {
+    //     background-color: colors.surface();
+    // }
+}

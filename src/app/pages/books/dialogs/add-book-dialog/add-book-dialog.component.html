@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>{{ popupMode }} book</h1>
+<div mat-dialog-content>
+    <form [formGroup]="bookForm">
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
+    
+        <div formGroupName="author">
+            <p>
+                <mat-form-field>
+                    <mat-label>First name</mat-label>
+                    <input matInput type="text" formControlName="firstName">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <mat-label>Last name</mat-label>
+                    <input matInput type="text" formControlName="lastName">
+                </mat-form-field>
+            </p>
+        </div>
+    </form>
+    <div mat-dialog-actions>
+    <!-- <div> -->
+        <button mat-button (click)="onCancelClick()" [ngClass]="'mat-cancel-button'">Cancel</button>
+        <button mat-button (click)="onAddClick()" cdkFocusInitial [disabled]="bookForm.invalid">{{ popupMode }}</button>
+    </div>
+</div>

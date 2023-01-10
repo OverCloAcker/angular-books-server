@@ -1,0 +1,26 @@
+@use 'theme/colors';
+@use 'theme/typography';
+
+mat-sidenav-content {
+    display: flex !important;
+}
+
+app-books, app-info, app-home, app-language, app-login, app-logout, app-search {
+    margin-inline: 200px;
+    flex-basis: 840px;
+    flex-grow: 1;
+    @media(max-width: 1600px) {
+        flex-grow: 0;
+        margin-inline: auto;
+    }
+    @media(max-width: 984px) {
+        margin-inline: 32px;
+    }
+    @media(max-width: 744px) {
+        margin-inline: 16px;
+    }
+}
+
+h1 {
+    color: colors.primary();
+}
