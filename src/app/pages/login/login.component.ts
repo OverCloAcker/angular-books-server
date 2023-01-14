@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ILoginResponse } from 'src/app/interfaces/login-response';
 import { LoginModel } from 'src/app/models/login.model';
 
 @Component({
@@ -34,8 +35,19 @@ export class LoginComponent {
     let model = new LoginModel();
     model.email = this.email.value;
     model.password = this.password.value;
-    this.authService.login(model).subscribe((result: boolean) => {
-      this.isLoginFailed = !result;
-    });
+    // this.authService.login(model).subscribe((result: ILoginResponse) => {
+    //   this.isLoginFailed = !result;
+    // });
+    this.authService.login(model).subscribe(
+      result => {
+        this.isLoginFailed = false;
+        // this.router.navigate(['/home']);
+      },
+      error => {
+        this.isLoginFailed = true;
+      }
+      
+    );
+    // this.authService.login(model).subscribe();
   }
 }

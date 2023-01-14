@@ -18,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatInputModule } from "@angular/material/input";
 import { AddBookDialogComponent } from './pages/books/dialogs/add-book-dialog/add-book-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
@@ -45,6 +48,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   providers: [
     AddBookDialogComponent, 
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

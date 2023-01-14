@@ -4,12 +4,14 @@
 .mat-book-list-item {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     // display: grid;
     // grid-template-columns: 1fr 1fr;
     gap: 16px;
     padding-inline: 16px 24px;
     background-color: colors.surface();
-    height: 72px;
+    // height: 72px;
+    height: 88px;
     //width: min-content;
     // margin-left: 16px;
     position: relative;
@@ -38,6 +40,16 @@
     .mat-book-name {
         color: colors.on-surface();
         @include typography.body-large;
+        overflow: hidden;
+        max-width: 60ch;
+        line-height: 1.5em;
+        height: 3em;
+        // @media(max-width: 780px) {
+        //     text-overflow: ellipsis;
+        //     overflow: hidden;
+        //     line-height: 1.5em;
+        //     height: 3em;
+        // }
     }
 
     .mat-book-author {
@@ -51,6 +63,7 @@
 
     .mat-icon-button-wrapper {
         margin-block: auto;
+        display: flex;
     }
 
     // button.cdk-program-focused {

@@ -1,65 +1,59 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of, tap } from 'rxjs';
 import { LoginModel } from '../models/login.model';
+import { environment } from '../../environments/environment';
+import { ILoginResponse } from '../interfaces/login-response';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  private _isAuthorized: boolean = false;
-
-  // public isAuthorized: boolean = false;
+  // private _isAuthorized: boolean = false;
+  private _accessToken: string | null = null;
 
   public get isAuthorized(): boolean {
-    return this._isAuthorized;
+    // return this._isAuthorized;
+    return !!this._accessToken;
   }
 
-  // public set isAuthorized(value: boolean) {
-  private set isAuthorized(value: boolean) {
-    this._isAuthorized = value;
-    // if(!this.isAuthorized) {
-    //   // this.router.navigate([this.isAuthorized ? '/home' : '/login']);
-    //   this.router.navigate(['/login']);
-    // }
+  public get accessToken(): string | null {
+    return this._accessToken;
   }
 
-  constructor(
-    private router: Router,
-    // private http: HttpClient
-  ) { }
-
-  public login(model: LoginModel): Observable<boolean> {
-    console.log('Email: ' + model.email);
-    console.log('Password: ' + model.password);
-    let result: boolean = false;
-    if(model.email == 'a@a' && model.password == 'pwd') {
-      // return of(true);
-      result = true;
-      this.router.navigate(['/home']);
-    }
-    this.isAuthorized = result;
-    return of(result);
-
-    // this.isAuthorized = true;
-    // this.router.navigate(['/home']);
-
-    // this.http.post<any>();
-  }
-
-  // public login(model: LoginModel): Observable<boolean> {
-  //   let result: boolean = false;
-  //   if(model.email == 'test@email' && model.password == 'password1') {
-  //     result = true;
-  //   }
-  //   this.isAuthorized = result;
-  //   return of(result);
+  // private set isAuthorized(value: boolean) {
+  //   this._isAuthorized = value;
   // }
 
+  constructor(private router: Router, private httpClient: HttpClient) {}
+
+  public login(model: LoginModel): Observable<ILoginResponse> {
+    console.log(environment.apiUrl);
+    let headers = new HttpHeaders({ ['Content-Type']: 'application/json' });
+    return this.httpClient
+      .post<ILoginResponse>(
+        environment.apiUrl + 'auth/login',
+        JSON.stringify(model),
+        {
+          headers: headers,
+        }
+      )
+      .pipe(
+        tap(
+          (result) => {
+            this._accessToken = result.accessToken;
+            this.router.navigate(['/home']);
+          },
+          (_) => {
+            this._accessToken = null;
+          }
+        )
+      );
+  }
+
   public logout(): void {
-    this.isAuthorized = false;
+    this._accessToken = null;
     this.router.navigate(['/login']);
   }
 }
