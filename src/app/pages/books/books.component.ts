@@ -16,19 +16,22 @@ export class BooksComponent implements OnInit {
   constructor(public bookService: BookService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    // this.bookService.getBooks().subscribe((result) => {
-    //   this.books = result;
-    // });
     this.loadBooks();
   }
 
-  // public addBook() {
-  //   const dialogRef = this.dialog.open(AddBookDialogComponent);
+  public addBook() {
+    const dialogRef = this.dialog.open(AddBookDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.bookService.addBook(result).subscribe();
+        this.loadBooks();
+      }
+    });
+  }
 
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     if (result) {
-  //       this.bookService.addBook(result).subscribe();
-  //     }
+  // public addBook() {
+  //   this.bookService.addBook().subscribe(_ => {
+  //     this.loadBooks();
   //   });
   // }
 
@@ -57,20 +60,13 @@ export class BooksComponent implements OnInit {
   public deleteBook(book: IBook) {
     this.bookService.deleteBook(book).subscribe(_ => {
       this.loadBooks();
-    }
-
-    );
+    });
   }
 
   public deleteBooks() {
     this.bookService.deleteBooks().subscribe(_ => {
       this.loadBooks();
-    }
-      
-    );
-    // this.bookService.getBooks().subscribe((result) => {
-    //   this.books = result;
-    // });
+    });
   }
 
   private loadBooks(): void {

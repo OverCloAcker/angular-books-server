@@ -64,15 +64,18 @@ export class BookService {
   //   return of();
   // }
 
-  public deleteBook(book:IBook): Observable<any> {
-    // console.log('Api URL is: ' + environment.apiUrl);
-    console.log('Service Book id is: ' + book.id);
+  public deleteBook(book: IBook): Observable<any> {
     return this.httpClient.delete(environment.apiUrl + 'books/' + book.id);
   }
 
   public deleteBooks(): Observable<any> {
-    return this.httpClient.delete(
-      environment.apiUrl + 'books'
-    );
+    return this.httpClient.delete(environment.apiUrl + 'books');
+  }
+
+  public addBook(book: IBook): Observable<any> {
+    return this.httpClient.post(environment.apiUrl + 'books', {
+      author: book.author.lastName + book.author.firstName,
+      name: book.name,
+    });
   }
 }
