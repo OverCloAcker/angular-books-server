@@ -12,9 +12,9 @@
             <input matInput type="password" formControlName="password">
             <mat-error *ngIf="password.hasError('required')">Password is required</mat-error>
         </mat-form-field>
-    </form>
 
-    <button mat-button (click)="login()" [disabled]="loginForm.invalid">Login</button>
+        <button mat-button (click)="login()" [disabled]="loginForm.invalid" type="submit">Login</button>
+    </form>
 
     <mat-error *ngIf="isLoginFailed">Incorrect Login or Password</mat-error>
 </div>
