@@ -22,6 +22,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { SignUpDialogComponent } from './pages/login/dialogs/sign-up-dialog/sign-up-dialog.component';
 // import { SignUpDialogComponent } from './pages/login/dialogs/sign-up-dialog/sign-up-dialog.component';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SignUpDialogComponent } from './pages/login/dialogs/sign-up-dialog/sign
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    PipesModule
   ],
   providers: [
     AddBookDialogComponent, 

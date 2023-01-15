@@ -12,7 +12,8 @@ import { ILoginResponse } from '../interfaces/login-response';
 export class AuthService {
   // private _isAuthorized: boolean = false;
   private _accessToken: string | null = null;
-  private _userName: string | null = null;
+  // private _userName: string | null = null;
+  private _userName: string = '';
 
   public get isAuthorized(): boolean {
     // return this._isAuthorized;
@@ -23,7 +24,8 @@ export class AuthService {
     return this._accessToken;
   }
 
-  public get userName(): string | null {
+  // public get userName(): string | null {
+  public get userName(): string {
     return this._userName;
   }
 
@@ -53,7 +55,7 @@ export class AuthService {
           },
           (_) => {
             this._accessToken = null;
-            this._userName = null;
+            // this._userName = null;
           }
         )
       );

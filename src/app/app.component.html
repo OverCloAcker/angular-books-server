@@ -5,7 +5,8 @@
         <div class="mat-icon-wrapper">
           <mat-icon>home</mat-icon>
         </div>
-        <p *ngIf="isSideNavMaximized">Home</p>
+        <!-- <p *ngIf="isSideNavMaximized">Home</p> -->
+        <p>Home</p>
       </a>
 
       <a *ngIf="authService.isAuthorized" [ngClass]="{'mat-side-nav-minimized' : isSideNavMaximized == false}"
@@ -14,31 +15,29 @@
         <div class="mat-icon-wrapper">
           <mat-icon>local_library</mat-icon>
         </div>
-        <p *ngIf="isSideNavMaximized">Books</p>
+        <!-- <p *ngIf="isSideNavMaximized">Books</p> -->
+        <p>Books</p>
       </a>
 
       <a *ngIf="authService.isAuthorized" [ngClass]="{'mat-side-nav-minimized' : isSideNavMaximized == false}" [ngClass]="{'mat-side-nav-maximized' : isSideNavMaximized == true}" mat-list-item routerLink="search" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">
         <mat-icon>search</mat-icon>
-        <p *ngIf="isSideNavMaximized">
-          Search
-        </p>
+        <!-- <p *ngIf="isSideNavMaximized">Search</p> -->
+        <p>Search</p>
       </a>
 
       <a [ngClass]="{'mat-side-nav-minimized' : isSideNavMaximized == false}" [ngClass]="{'mat-side-nav-maximized' : isSideNavMaximized == true}" mat-list-item routerLink="info" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">
         <mat-icon>info</mat-icon>
-        <p *ngIf="isSideNavMaximized">
-          Info
-        </p>
+        <!-- <p *ngIf="isSideNavMaximized">Info</p> -->
+        <p>Info</p>
       </a>
 
       <a [ngClass]="{'mat-side-nav-minimized' : isSideNavMaximized == false}" [ngClass]="{'mat-side-nav-maximized' : isSideNavMaximized == true}" mat-list-item routerLink="language" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">
         <mat-icon>language</mat-icon>
-        <p *ngIf="isSideNavMaximized">
-          Lang
-        </p>
+        <!-- <p *ngIf="isSideNavMaximized">Lang</p> -->
+        <p>Lang</p>
       </a>
 
-      <a *ngIf="!authService.isAuthorized"
+      <!-- <a *ngIf="!authService.isAuthorized"
         [ngClass]="{'mat-side-nav-minimized' : isSideNavMaximized == false}"
         [ngClass]="{'mat-side-nav-maximized' : isSideNavMaximized == true}" mat-list-item routerLink="login"
         routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">
@@ -46,19 +45,52 @@
         <p *ngIf="isSideNavMaximized">
           Login
         </p>
-      </a>
+      </a> -->
       
-      <a *ngIf="authService.isAuthorized" (click)="authService.logout()"
+      <!-- <a *ngIf="authService.isAuthorized" (click)="authService.logout()"
         [ngClass]="{'mat-side-nav-minimized' : isSideNavMaximized == false}"
         [ngClass]="{'mat-side-nav-maximized' : isSideNavMaximized == true}" mat-list-item routerLink="logout"
         routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">
       <mat-icon>logout</mat-icon>
         <p *ngIf="isSideNavMaximized">
-          Logout
+          {{ authService.userName }}
+        </p>
+      </a> -->
+    </mat-nav-list>
+    <mat-action-list>
+      <a *ngIf="!authService.isAuthorized" [ngClass]="{'mat-side-nav-minimized' : isSideNavMaximized == false}"
+        [ngClass]="{'mat-side-nav-maximized' : isSideNavMaximized == true}" mat-list-item routerLink="login"
+        routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>Login</mat-icon>
+        <!-- <p *ngIf="isSideNavMaximized">Login</p> -->
+        <p>Login</p>
+      </a>
+
+      <a *ngIf="authService.isAuthorized"
+        [ngClass]="{'mat-side-nav-minimized' : isSideNavMaximized == false}"
+        [ngClass]="{'mat-side-nav-maximized' : isSideNavMaximized == true}" mat-list-item
+        routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>person</mat-icon>
+        <p *ngIf="isSideNavMaximized">
+          {{ authService.userName }}
+        </p>
+        <p *ngIf="!isSideNavMaximized">
+          {{ authService.userName | user }}
         </p>
       </a>
-    </mat-nav-list>
-    <p>{{ authService.userName }}</p>
+
+      <a *ngIf="authService.isAuthorized" (click)="authService.logout()"
+        [ngClass]="{'mat-side-nav-minimized' : isSideNavMaximized == false}"
+        [ngClass]="{'mat-side-nav-maximized' : isSideNavMaximized == true}" mat-list-item routerLink="logout"
+        routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>logout</mat-icon>
+        <!-- <p *ngIf="isSideNavMaximized">Logout</p> -->
+        <p>Logout</p>
+        <!-- <p>{{ authService.userName }}</p> -->
+      </a>
+      <!-- {{ authService.userName }} -->
+    </mat-action-list>
+    <!-- <p>{{ authService.userName }}</p> -->
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>

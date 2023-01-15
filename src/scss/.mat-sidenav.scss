@@ -20,6 +20,15 @@
   background-color: colors.surface();
     // background-color: red;
   color: colors.on-surface-variant();
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+}
+
+.mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 p {
