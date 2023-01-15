@@ -58,3 +58,19 @@ app-add-book-dialog {
         min-height: auto;
     }
 }
+
+.mat-dialog-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    place-content: end;
+    margin-bottom: 8px;
+    // @media(max-width: 430px) {
+    //     flex-direction: column;
+    //     margin-inline: auto;
+    //     place-content: start;
+    //     button {
+    //         margin-inline: auto;
+    //     }
+    // }
+}

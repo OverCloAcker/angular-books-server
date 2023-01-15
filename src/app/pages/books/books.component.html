@@ -1,10 +1,11 @@
 <h1>Books</h1>
 
 <div>
-    <div class="mat-icon-button-wrapper">
-        <button mat-button (click)="addBook()">Add Book</button>
-        <button mat-button (click)="generateBooks()">Generate books</button>
-        <button mat-button (click)="deleteBooks()">Delete books</button>
+    <!-- <div class="mat-icon-button-wrapper"> -->
+    <div class="mat-dialog-actions">
+        <button mat-button (click)="addBook()">Add</button>
+        <button mat-button (click)="generateBooks()">Generate</button>
+        <button mat-button (click)="deleteBooks()">Delete</button>
     </div>
 
     <!-- <div *ngFor="let book of bookService.getBooks() | async" class='mat-book-list-item'> -->
