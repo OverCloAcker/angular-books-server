@@ -64,6 +64,13 @@ export class BookService {
   //   return of();
   // }
 
+  public editBook(book: IBook): Observable<any> {
+    return this.httpClient.put(environment.apiUrl + 'books/' + book.id, {
+      author: book.author.lastName + ' ' + book.author.firstName,
+      name: book.name,
+    });
+  }
+
   public deleteBook(book: IBook): Observable<any> {
     return this.httpClient.delete(environment.apiUrl + 'books/' + book.id);
   }

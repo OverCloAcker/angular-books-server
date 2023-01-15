@@ -35,19 +35,36 @@ export class BooksComponent implements OnInit {
   //   });
   // }
 
-  // public editBook(book: IBook) {
-  //   const dialogRef = this.dialog.open(AddBookDialogComponent, {
-  //     data: book,
-  //   });
+  public editBook(book: IBook) {
+    let authorFullName: string = JSON.stringify(book.author);
+    let authorFullNameTrimmed = authorFullName.substring(1, authorFullName.length - 1);
+    let authorLastName: string = authorFullNameTrimmed.split(' ')[0];
+    let authorFirstName: string = authorFullNameTrimmed.split(' ')[1];
+    const dialogRef = this.dialog.open(AddBookDialogComponent, {
+      // data: book,
+      data: {
+        id: book.id,
+        name: book.name,
+        author: {
+          firstName: authorFirstName,
+          lastName: authorLastName
+        }
+      }
+    });
 
-  //   //console.log(book.id);
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     this.bookService.editBook(result).subscribe();
+    //   }
+    // });
 
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     if (result) {
-  //       this.bookService.editBook(result).subscribe();
-  //     }
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.bookService.editBook(result).subscribe();
+      }
+      this.loadBooks();
+    });
+  }
 
   public generateBooks() {
     this.bookService.generateBooks().subscribe(_ => {

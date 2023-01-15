@@ -12,8 +12,10 @@ export class AuthorPipe implements PipeTransform {
   transform(author: IAuthor): string {
     let authorFullName: string = JSON.stringify(author);
     let authorFullNameTrimmed = authorFullName.substring(1, authorFullName.length - 1);
-    let authorLastName: string = authorFullNameTrimmed.substring(0, authorFullNameTrimmed.indexOf(' '));
-    let authorFirstName: string = authorFullNameTrimmed.substring(authorFullNameTrimmed.indexOf(' ') + 1, authorFullNameTrimmed.length);
+    // let authorLastName: string = authorFullNameTrimmed.substring(0, authorFullNameTrimmed.indexOf(' '));
+    // let authorFirstName: string = authorFullNameTrimmed.substring(authorFullNameTrimmed.indexOf(' ') + 1, authorFullNameTrimmed.length);
+    let authorLastName: string = authorFullNameTrimmed.split(' ')[0];
+    let authorFirstName: string = authorFullNameTrimmed.split(' ')[1];
     authorLastName = authorLastName[0].toUpperCase() + authorLastName.slice(1).toLowerCase();
     authorFirstName =
       authorFirstName[0].toUpperCase() + authorFirstName.slice(1).toLowerCase();
