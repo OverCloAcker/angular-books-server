@@ -59,10 +59,26 @@ mat-label, .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
 //     // height: 40px;
 // }
 
+:root {
+    .mat-mdc-dialog-actions {
+        display: flex;
+        gap: 8px;
+        // margin-left: auto;
+        place-content: end;
+    }
+}
+
 //Button default settings
 .mat-mdc-button.mat-mdc-button-base {
-    margin-left: auto;
+    // margin-left: auto;
+    // margin-left: 0px;
     height: 40px;
+}
+
+:root {
+    .mat-mdc-dialog-actions .mat-mdc-button-base+.mat-mdc-button-base {
+        margin-left: 0;
+    }
 }
 
 //Login button disabled
