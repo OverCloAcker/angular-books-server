@@ -12,6 +12,7 @@ import { ILoginResponse } from '../interfaces/login-response';
 export class AuthService {
   // private _isAuthorized: boolean = false;
   private _accessToken: string | null = null;
+  private _userName: string | null = null;
 
   public get isAuthorized(): boolean {
     // return this._isAuthorized;
@@ -20,6 +21,10 @@ export class AuthService {
 
   public get accessToken(): string | null {
     return this._accessToken;
+  }
+
+  public get userName(): string | null {
+    return this._userName;
   }
 
   // private set isAuthorized(value: boolean) {
@@ -43,10 +48,12 @@ export class AuthService {
         tap(
           (result) => {
             this._accessToken = result.accessToken;
+            this.parseUserName();
             this.router.navigate(['/home']);
           },
           (_) => {
             this._accessToken = null;
+            this._userName = null;
           }
         )
       );
@@ -55,5 +62,12 @@ export class AuthService {
   public logout(): void {
     this._accessToken = null;
     this.router.navigate(['/login']);
+  }
+
+  private parseUserName(): void {
+    let jwtBody = this._accessToken?.split('.')[1] ?? '';
+    let jsonString = window.atob(jwtBody);
+    let jsonObject = JSON.parse(jsonString);
+    this._userName = jsonObject.name + ' <' + jsonObject.email + '>';
   }
 }
