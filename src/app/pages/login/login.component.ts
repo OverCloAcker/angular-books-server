@@ -70,7 +70,7 @@ export class LoginComponent {
       if (result) {
         this.userService.joinUser(result).subscribe();
       }
-      this.isNewUser = true;
+      // this.isNewUser = true;
     });
   }
 }

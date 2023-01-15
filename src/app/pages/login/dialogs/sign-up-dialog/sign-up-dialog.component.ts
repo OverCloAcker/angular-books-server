@@ -50,5 +50,6 @@ export class SignUpDialogComponent {
       password: this.password.value
     } as IUser;
     this.dialogRef.close(user);
+    // isNewUser = true;
   }
 }
