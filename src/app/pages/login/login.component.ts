@@ -21,6 +21,8 @@ import { SignUpDialogComponent } from './dialogs/sign-up-dialog/sign-up-dialog.c
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  public isNewUser: boolean = false;
+
   public loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
@@ -66,10 +68,9 @@ export class LoginComponent {
     const dialogRef = this.dialog.open(SignUpDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // this.bookService.addBook(result).subscribe();
-        // this.loadBooks();
         this.userService.joinUser(result).subscribe();
       }
+      this.isNewUser = true;
     });
   }
 }
