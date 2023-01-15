@@ -74,7 +74,7 @@ export class BookService {
 
   public addBook(book: IBook): Observable<any> {
     return this.httpClient.post(environment.apiUrl + 'books', {
-      author: book.author.lastName + book.author.firstName,
+      author: book.author.lastName + ' ' + book.author.firstName,
       name: book.name,
     });
   }
