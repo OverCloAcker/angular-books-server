@@ -1,19 +1,29 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ILoginResponse } from 'src/app/interfaces/login-response';
+import { IUser } from 'src/app/interfaces/user';
 import { LoginModel } from 'src/app/models/login.model';
+import { UserService } from 'src/app/services/user.service';
+import { SignUpDialogComponent } from './dialogs/sign-up-dialog/sign-up-dialog.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   public loginForm = new FormGroup({
-    email: new FormControl('', [ Validators.required, Validators.email ]),
-    password: new FormControl('', [ Validators.required ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
   });
 
   public get email(): FormControl {
@@ -28,7 +38,9 @@ export class LoginComponent {
 
   constructor(
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    private dialog: MatDialog,
+    public userService: UserService
   ) {}
 
   public login() {
@@ -39,15 +51,25 @@ export class LoginComponent {
     //   this.isLoginFailed = !result;
     // });
     this.authService.login(model).subscribe(
-      result => {
+      (result) => {
         this.isLoginFailed = false;
         // this.router.navigate(['/home']);
       },
-      error => {
+      (error) => {
         this.isLoginFailed = true;
       }
-      
     );
     // this.authService.login(model).subscribe();
+  }
+
+  public join() {
+    const dialogRef = this.dialog.open(SignUpDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // this.bookService.addBook(result).subscribe();
+        // this.loadBooks();
+        this.userService.joinUser(result).subscribe();
+      }
+    });
   }
 }

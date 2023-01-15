@@ -24,8 +24,8 @@ export class BooksComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.bookService.addBook(result).subscribe();
-        this.loadBooks();
       }
+      this.loadBooks();
     });
   }
 

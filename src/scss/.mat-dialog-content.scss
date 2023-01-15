@@ -18,6 +18,8 @@ app-add-book-dialog {
 
     .mdc-dialog .mdc-dialog__content {
         padding-bottom: 24px;
+        // display: flex;
+        // flex-direction: column;
     }
 
     .mat-mdc-dialog-container .mdc-dialog__surface {
@@ -34,6 +36,8 @@ app-add-book-dialog {
 
     .mdc-dialog__content>:first-child {
         margin-bottom: 5.2px;
+        display: flex;
+        flex-direction: column;
     }
 
     span.mat-mdc-button-touch-target {

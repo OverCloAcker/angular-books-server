@@ -20,6 +20,8 @@ import { AddBookDialogComponent } from './pages/books/dialogs/add-book-dialog/ad
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { SignUpDialogComponent } from './pages/login/dialogs/sign-up-dialog/sign-up-dialog.component';
+// import { SignUpDialogComponent } from './pages/login/dialogs/sign-up-dialog/sign-up-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     LogoutComponent,
     LanguageComponent,
     LoginComponent,
+    SignUpDialogComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,23 +1,26 @@
-<div class="container">
-    <form [formGroup]="loginForm">
+<h1 mat-dialog-title>Sign up</h1>
+<div mat-dialog-content>
+    <form [formGroup]="userForm">
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput type="text" formControlName="name">
+            <mat-error *ngIf="name.hasError('required')">Username is required</mat-error>
+        </mat-form-field>
         <mat-form-field>
             <mat-label>Email</mat-label>
             <input matInput type="text" formControlName="email">
             <mat-error *ngIf="email.hasError('required')">Email is required</mat-error>
             <mat-error *ngIf="email.hasError('email')">Wrong email format</mat-error>
         </mat-form-field>
-
         <mat-form-field>
             <mat-label>Password</mat-label>
             <input matInput type="password" formControlName="password">
             <mat-error *ngIf="password.hasError('required')">Password is required</mat-error>
         </mat-form-field>
     </form>
-
     <div mat-dialog-actions>
-        <button mat-button (click)="join()" [ngClass]="'mat-cancel-button'">Join</button>
-        <button mat-button (click)="login()" [disabled]="loginForm.invalid">Login</button>
+        <!-- <div> -->
+        <button mat-button (click)="onCancelClick()" [ngClass]="'mat-cancel-button'">Cancel</button>
+        <button mat-button (click)="onJoinClick()" cdkFocusInitial [disabled]="userForm.invalid">Join</button>
     </div>
-
-    <mat-error *ngIf="isLoginFailed">Incorrect Login or Password</mat-error>
 </div>

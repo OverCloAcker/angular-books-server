@@ -52,6 +52,9 @@ mat-label, .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
 .mat-mdc-form-field-error {
     color: colors.error();
     @include typography.body-small;
+    // display: flex;
+    // place-content: center;
+    // margin-block: 10px;
 }
 
 // .mat-mdc-button {
