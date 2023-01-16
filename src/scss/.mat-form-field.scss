@@ -122,8 +122,8 @@ mat-label, .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
 }
 
 mat-hint {
-    color: colors.primary();
+    color: colors.on-surface();
     // margin-block: 16px;
     padding-block: 16px;
-    margin-inline: auto;
+    // margin-inline: auto;
 }

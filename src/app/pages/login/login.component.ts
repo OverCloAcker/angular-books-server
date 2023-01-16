@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -69,8 +69,8 @@ export class LoginComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.userService.joinUser(result).subscribe();
+        this.isNewUser = true;
       }
-      // this.isNewUser = true;
     });
   }
 }

@@ -1,7 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IUser } from 'src/app/interfaces/user';
+import { LoginComponent } from '../../login.component';
 
 @Component({
   selector: 'app-sign-up-dialog',
@@ -9,10 +10,16 @@ import { IUser } from 'src/app/interfaces/user';
   styleUrls: ['./sign-up-dialog.component.scss'],
 })
 export class SignUpDialogComponent {
+  @Output() newItemEvent = new EventEmitter<string>();
+
+  addNewItem(value: string) {
+    this.newItemEvent.emit(value);
+  }
+
   public user: IUser = {
     name: '',
     email: '',
-    password: ''
+    password: '',
   };
 
   constructor(
@@ -47,9 +54,8 @@ export class SignUpDialogComponent {
     let user = {
       name: this.name.value,
       email: this.email.value,
-      password: this.password.value
+      password: this.password.value,
     } as IUser;
     this.dialogRef.close(user);
-    // isNewUser = true;
   }
 }
