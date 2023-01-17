@@ -23,9 +23,11 @@ export class BooksComponent implements OnInit {
     const dialogRef = this.dialog.open(AddBookDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.bookService.addBook(result).subscribe();
+        this.bookService.addBook(result).subscribe(_ => {
+          this.loadBooks();
+        });
       }
-      this.loadBooks();
+      // this.loadBooks();
     });
   }
 
@@ -60,9 +62,10 @@ export class BooksComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.bookService.editBook(result).subscribe();
+        this.bookService.editBook(result).subscribe(_ => {
+          this.loadBooks();
+        });
       }
-      this.loadBooks();
     });
   }
 
